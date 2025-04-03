@@ -3,7 +3,7 @@ import { getGadgets, addGadget, updateGadget, decommissionGadget, selfDestructGa
 
 const router = express.Router();
 
-router.get("/", getGadgets); // ✅ Fix - Base route is now "/api/gadgets"
+router.get("/", getGadgets); 
 router.post("/", addGadget);
 router.patch("/:id", updateGadget);
 router.delete("/:id", decommissionGadget);
