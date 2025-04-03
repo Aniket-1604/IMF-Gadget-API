@@ -7,13 +7,16 @@ A secure API to manage IMF gadgets, featuring inventory tracking, self-destruct 
 -  **Get All Gadgets** (`GET /api/gadgets`)
 -  **Update Gadget Status** (`PATCH /api/gadgets/:id`)
 -  **Decommission Gadget** (`DELETE /api/gadgets/:id`)
--  **Self-Destruct Gadget** (`POST /api/gadgets/:id/self-destruct`)
+-  **Self-Destruct Gadget** (`PATCH /api/gadgets/:id/self-destruct`)
 
 ##  Tech Stack
 - **Node.js** + **Express.js**
 - **PostgreSQL** with **Prisma ORM**
 - **Render** for Deployment
 - **Postman** for API Testing
+
+## Hosted On
+https://imf-gadget-api-xvqn.onrender.com
 
 ## Postman Documentation
 - https://documenter.getpostman.com/view/43688967/2sB2cSh44k
