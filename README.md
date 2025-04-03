@@ -16,7 +16,7 @@ A secure API to manage IMF gadgets, featuring inventory tracking, self-destruct 
 - **Postman** for API Testing
 
 ## Hosted On
-https://imf-gadget-api-xvqn.onrender.com
+- https://imf-gadget-api-xvqn.onrender.com
 
 ## Postman Documentation
 - https://documenter.getpostman.com/view/43688967/2sB2cSh44k
