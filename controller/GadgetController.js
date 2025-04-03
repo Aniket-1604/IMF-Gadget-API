@@ -2,7 +2,7 @@ import prisma from "../DB/db.config.js";
 import { PrismaClient } from "@prisma/client";
 import { v4 as uuidv4 } from "uuid";
 
-const prismaClient = new PrismaClient(); // Initialize Prisma Client
+const prismaClient = new PrismaClient(); 
 
 // GET: Retrieve all gadgets with random success probability
 export const getGadgets = async (req, res) => {
@@ -18,67 +18,11 @@ export const getGadgets = async (req, res) => {
   }
 };
 
-// POST: Add a new gadget
-// export const addGadget = async (req, res) => {
-//   try {
-//     const { name } = req.body;
-//     if (!name) return res.status(400).json({ error: "Name is required" });
 
-//     const newGadget = await prisma.gadgets.create({
-//       data: {
-//         id: uuidv4(),
-//         name,
-//         status: "Available", // Use string directly since Enums are stored as strings
-//       },
-//     });
-
-//     res.json(newGadget);
-//   } catch (error) {
-//     res.status(500).json({ error: "Failed to add gadget" });
-//   }
-// };
-// export const addGadget = async (req, res) => {
-//     try {
-//       const { name } = req.body;
-//       if (!name) return res.status(400).json({ error: "Name is required" });
-  
-//       const newGadget = await prisma.gadgets.create({
-//         data: {
-//           id: uuidv4(),
-//           name,
-//           status: "Available",
-//         },
-//       });
-  
-//       res.json(newGadget);
-//     } catch (error) {
-//       console.error("❌ Error adding gadget:", error);  // Log actual error
-//       res.status(500).json({ error: "Failed to add gadget", details: error.message });
-//     }
-//   };
-
-
-// export const addGadget = async (req, res) => {
-//     try {
-//       console.log("📩 Received body:", req.body); // Debugging log
-  
-//       const { name } = req.body;
-//       if (!name) return res.status(400).json({ error: "Name is required" });
-  
-//       const newGadget = await prisma.gadgets.create({
-//         data: { name, status: "Available" },
-//       });
-  
-//       res.json(newGadget);
-//     } catch (error) {
-//       console.error("❌ Error adding gadget:", error);
-//       res.status(500).json({ error: "Failed to add gadget", details: error.message });
-//     }
-//   };
-
+// POST : Add a new gadget
 export const addGadget = async (req, res) => {
     try {
-      console.log("📩 Received body:", req.body); // Debugging log
+      console.log("📩 Received body:", req.body); 
   
       const { name } = req.body;
       if (!name) return res.status(400).json({ error: "Name is required" });
@@ -90,7 +34,6 @@ export const addGadget = async (req, res) => {
   
       res.status(201).json(newGadget);
     } catch (error) {
-      console.error("❌ Error adding gadget:", error);
       res.status(500).json({ error: "Failed to add gadget", details: error.message });
     }
   };
@@ -101,7 +44,6 @@ export const updateGadget = async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
 
-    // Validate status
     const validStatuses = ["Available", "Deployed", "Destroyed", "Decommissioned"];
     if (!validStatuses.includes(status)) {
       return res.status(400).json({ error: "Invalid status value" });
@@ -127,13 +69,12 @@ export const decommissionGadget = async (req, res) => {
         where: { id },
         data: { 
           status: "Decommissioned",
-          decommissionedAt: new Date(),  // Store current timestamp
+          decommissionedAt: new Date(),  
         },
       });
   
       res.json(updatedGadget);
     } catch (error) {
-      console.error("❌ Failed to decommission gadget:", error);
       res.status(500).json({ error: "Failed to decommission gadget", details: error.message });
     }
   };
@@ -146,7 +87,7 @@ export const selfDestructGadget = async (req, res) => {
 
     await prisma.gadgets.update({
       where: { id },
-      data: { status: "Destroyed" }, // Use string
+      data: { status: "Destroyed" }, 
     });
 
     res.json({ message: "Self-destruct sequence initiated!", confirmationCode });
